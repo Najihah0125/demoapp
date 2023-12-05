@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\demoController;
 
 //view list of purchase req
-Route::get('/home',[demoController::class, 'index']);
+Route::get('/',[demoController::class, 'index']);
 
 //view purchase form
 Route::get('/purchaseForm', function () {

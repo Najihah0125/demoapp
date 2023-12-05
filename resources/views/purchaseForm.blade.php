@@ -1,4 +1,4 @@
-<form action="/createRequest" method="post">
+<!-- <form action="/createRequest" method="post">
     @csrf
     <h1>Create Purchase Request</h1>
     Purchase ID <input name="purchase_id" type="int" hidden><br>
@@ -23,4 +23,4 @@
     
     <br><br>
     <button type="submit">Submit</button>
-</form>
+</form> -->

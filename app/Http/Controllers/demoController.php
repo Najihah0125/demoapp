@@ -9,15 +9,28 @@ use Illuminate\Support\Facades\DB;
 
 class demoController extends Controller
 {
-    //homepage
-    function index(){
-        $purchase = Purchase::paginate(5);
-        return view('home', ['list'=>$purchase]);
+
+    //get - display list of purchase req
+    function getlist(){
+        return Purchase::all();
     }
+
+    //find specific purchase req
+    function findPurchaseReq($purchase_id){
+        return Purchase::find($purchase_id);
+    }
+
+    //homepage
+    // function index(){
+    //     $purchase = Purchase::paginate(5);
+    //     return view('home', ['list'=>$purchase]);
+    // }
 
     //create new purchase request - requestor details
     function createReq(Request $req){
+
         $purchase = new Purchase;
+        //id xyah, dia auto inc
         $purchase->purchase_id = $req->purchase_id;
         $purchase->name = $req->name;
         $purchase->date = $req->date;
@@ -33,11 +46,19 @@ class demoController extends Controller
         $purchase->unit_price = $req->unit_price;
         $purchase->total_price = $req->total_price;
         $purchase->reason = $req->reason;
-        $purchase->attachment = $req->attachment;
+        // // $purchase->attachment = $req->attachment;
 
-        $purchase->save();
+        $result = $purchase->save();
 
-        return redirect('/home'); //nama url
+        if($result){
+            return ["Result"=>"Data has been submitted!"];
+        }
+        else{
+            return ["Result"=>"Operation failed!"];
+        }
+
+        
+        // return redirect('home'); //nama url
     }
 
     //display list of purchase req
@@ -74,13 +95,13 @@ class demoController extends Controller
 
         $purchase->save();
 
-        return redirect('display');
+        return redirect('home');
     }
 
     //delete purchase req
     function deletePurchase($id){
         $purchase = Purchase::find($id);
         $purchase->delete();
-        return redirect('display');
+        return redirect('home');
     }
 }
