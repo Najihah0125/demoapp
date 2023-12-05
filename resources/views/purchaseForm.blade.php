@@ -1,8 +1,8 @@
 <form action="/createRequest" method="post">
     @csrf
     <h1>Create Purchase Request</h1>
-    Requestor ID <input name="req_id" type="int" hidden><br>
-    Name <input name="req_name" type="text" required><br>
+    Purchase ID <input name="purchase_id" type="int" hidden><br>
+    Name <input name="name" type="text" required><br>
     Date <input name="date" type="date" required><br>
     Position <input name="position" type="text" required><br>
     Support <input name="support" type="text" required><br>
