@@ -27,3 +27,4 @@ Route::get('purchaseForm', function () {
 
 
 //delete - delete existing purchase req
+Route::delete('deletePurchase/{id}', [demoController::class, 'deletePurchase']);

@@ -30,7 +30,7 @@ class demoController extends Controller
     function createReq(Request $req){
 
         $purchase = new Purchase;
-        //id xyah, dia auto inc
+        //id stay hidden sebab dia auto inc
         $purchase->purchase_id = $req->purchase_id;
         $purchase->name = $req->name;
         $purchase->date = $req->date;
