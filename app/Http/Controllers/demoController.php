@@ -11,13 +11,18 @@ class demoController extends Controller
 {
 
     //get - display list of purchase req
-    function getlist(){
+    function listPurchaseReq(){
         return Purchase::all();
     }
 
-    //find specific purchase req
-    function findPurchaseReq($purchase_id){
+    //search specific purchase req - for update & delete button
+    function findPurchaseReqId($purchase_id){
         return Purchase::find($purchase_id);
+    }
+
+    //search specific purchase req - for users to search (search bar)
+    function findPurchaseReqName($name){
+        return Purchase::where("name", "like", "%".$name."%")->get();
     }
 
     //homepage
@@ -91,14 +96,21 @@ class demoController extends Controller
         $purchase->unit_price = $req->unit_price;
         $purchase->total_price = $req->total_price;
         $purchase->reason = $req->reason;
-        $purchase->attachment = $req->attachment;
+        // $purchase->attachment = $req->attachment;
 
-        $purchase->save();
+        $result = $purchase->save();
 
-        return redirect('home');
+        if($result){
+            return ["Result"=>"Data has been updated!"];
+        }
+        else{
+            return ["Result"=>"Operation failed!"];
+        }
+
+        // return redirect('home');
     }
 
-    //delete purchase req
+    //delete purchase req - for delete button
     function deletePurchase($id){
         $purchase = Purchase::find($id);
         $purchase->delete();

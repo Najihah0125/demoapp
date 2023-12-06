@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 
 class dummyapi extends Controller
 {
-    function getData(){
-        return ["name"=>"testing"];
-    }
+    // function getData(){
+    //     return ["name"=>"testing"];
+    // }
 
-    //test api get
-    function getList(){
-        return Purchase::all();
-    }
+    // //test api get
+    // function getList(){
+    //     return Purchase::all();
+    // }
 }
