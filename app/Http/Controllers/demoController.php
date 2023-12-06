@@ -34,6 +34,10 @@ class demoController extends Controller
     //create new purchase request - requestor details
     function createReq(Request $req){
 
+        //for purchase req items (min 1 itemk)
+        $array_item= $request->items ;
+
+
         $purchase = new Purchase;
         //id stay hidden sebab dia auto inc
         $purchase->purchase_id = $req->purchase_id;
@@ -43,17 +47,31 @@ class demoController extends Controller
         $purchase->support = $req->support;
         $purchase->payment_term = $req->payment_term;
         $purchase->edd = $req->edd;
-        $purchase->item_code = $req->item_code;
-        $purchase->description = $req->description;
-        $purchase->supplier = $req->supplier;
-        $purchase->quantity = $req->quantity;
-        $purchase->claim = $req->claim;
-        $purchase->unit_price = $req->unit_price;
-        $purchase->total_price = $req->total_price;
-        $purchase->reason = $req->reason;
-        // // $purchase->attachment = $req->attachment;
 
-        $result = $purchase->save();
+
+        foreach($array_item as $a)
+        {
+            //if else - validate null input fields
+            if
+            $item = new Items;
+            $item->item_code = $req->item_code;
+            $item->description = $req->description;
+            $item->supplier = $req->supplier;
+            $item->quantity = $req->quantity;
+            $item->claim = $req->claim;
+            $item->unit_price = $req->unit_price;
+            $item->total_price = $req->total_price;
+            $item->reason = $req->reason;
+
+        }
+    
+        // // $purchase->attachment = $req->attachment;
+        if($purchase->save())
+        {
+            $item->save();
+
+        }
+  
 
         if($result){
             return ["Result"=>"Data has been submitted!"];
