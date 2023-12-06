@@ -34,7 +34,7 @@ class demoController extends Controller
     //create new purchase request - requestor details
     function createReq(Request $req){
 
-        //for purchase req items (min 1 itemk)
+        //for purchase req items (min 1 item)
         $array_item= $request->items ;
 
 
