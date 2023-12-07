@@ -1,3 +1,5 @@
+
+<body>
 <h1>List of Purchase Request</h1>
 
 <table>
@@ -42,3 +44,4 @@
     </tr>
     @endforeach
 </table>
+</body>

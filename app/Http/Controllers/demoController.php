@@ -10,9 +10,14 @@ use Illuminate\Support\Facades\DB;
 class demoController extends Controller
 {
 
+    // protected $primaryKey = 'req_id';
+    // public $timestamps=false;
+
+
     //get - display list of purchase req
     function listPurchaseReq(){
-        return Purchase::all();
+        $list = Purchase::all();
+        return response()->json($list);
     }
 
     //search specific purchase req - for update & delete button
@@ -35,43 +40,46 @@ class demoController extends Controller
     function createReq(Request $req){
 
         //for purchase req items (min 1 item)
-        $array_item= $request->items ;
+        // $array_item= $request->items ;
 
 
         $purchase = new Purchase;
         //id stay hidden sebab dia auto inc
-        $purchase->purchase_id = $req->purchase_id;
+        $purchase->request_id = $req->request_id;
         $purchase->name = $req->name;
         $purchase->date = $req->date;
         $purchase->position = $req->position;
         $purchase->support = $req->support;
         $purchase->payment_term = $req->payment_term;
         $purchase->edd = $req->edd;
+        $purchase->reason = $req->reason;
+        $purchase->status_coo = $req->status_coo;
+        $purchase->status_csh = $req->status_csh;
+        $purchase->status_ceo = $req->status_ceo;
 
+        // foreach($array_item as $a)
+        // {
+        //     //if else - validate null input fields
+        //     if
+        //     $item = new Items;
+        //     $item->item_code = $req->item_code;
+        //     $item->description = $req->description;
+        //     $item->supplier = $req->supplier;
+        //     $item->quantity = $req->quantity;
+        //     $item->claim = $req->claim;
+        //     $item->unit_price = $req->unit_price;
+        //     $item->total_price = $req->total_price;
+        //     $item->reason = $req->reason;
 
-        foreach($array_item as $a)
-        {
-            //if else - validate null input fields
-            if
-            $item = new Items;
-            $item->item_code = $req->item_code;
-            $item->description = $req->description;
-            $item->supplier = $req->supplier;
-            $item->quantity = $req->quantity;
-            $item->claim = $req->claim;
-            $item->unit_price = $req->unit_price;
-            $item->total_price = $req->total_price;
-            $item->reason = $req->reason;
-
-        }
+        // }
     
         // // $purchase->attachment = $req->attachment;
-        if($purchase->save())
-        {
-            $item->save();
+        // if($purchase->save())
+        // {
+        //     $item->save();
 
-        }
-  
+        // }
+        $result = $purchase->save();
 
         if($result){
             return ["Result"=>"Data has been submitted!"];
@@ -106,15 +114,19 @@ class demoController extends Controller
         $purchase->support = $req->support;
         $purchase->payment_term = $req->payment_term;
         $purchase->edd = $req->edd;
-        $purchase->item_code = $req->item_code;
-        $purchase->description = $req->description;
-        $purchase->supplier = $req->supplier;
-        $purchase->quantity = $req->quantity;
-        $purchase->claim = $req->claim;
-        $purchase->unit_price = $req->unit_price;
-        $purchase->total_price = $req->total_price;
         $purchase->reason = $req->reason;
-        // $purchase->attachment = $req->attachment;
+
+        //foreach items
+        // $item = new Items;
+        // $item->item_code = $req->item_code;
+        // $item->description = $req->description;
+        // $item->supplier = $req->supplier;
+        // $item->quantity = $req->quantity;
+        // $item->claim = $req->claim;
+        // $item->unit_price = $req->unit_price;
+        // $item->total_price = $req->total_price;
+        
+        //foreach files
 
         $result = $purchase->save();
 

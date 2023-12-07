@@ -1,4 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\demoController;
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
